@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -122,8 +123,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 DatabaseHelper myDb = new DatabaseHelper(MainActivity.this);
-                myDb.deleteAllPlaces();
-                Toast.makeText(MainActivity.this, "All Places Deleted Successfully!", Toast.LENGTH_SHORT).show();
+                Log.d("Check List", "List ===>"+myDb.getAllPlaces().size());
+                if(myDb.getAllPlaces().size() > 0){
+                    myDb.deleteAllPlaces();
+                    Toast.makeText(MainActivity.this, "All Places Deleted Successfully!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "No place exist to deleted!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {

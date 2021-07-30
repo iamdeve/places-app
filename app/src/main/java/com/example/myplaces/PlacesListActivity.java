@@ -2,9 +2,12 @@ package com.example.myplaces;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -21,6 +24,27 @@ public class PlacesListActivity extends AppCompatActivity {
     PlaceAdapter adapter ;
     Button btn_redirect;
     TextView tv_warning;
+
+    public class PlaceAdapter extends ArrayAdapter<PlacesModel>{
+        public PlaceAdapter(Context context, List<PlacesModel> places){super(context, 0, places);}
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent){
+            PlacesModel places = getItem(position);
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.listview_layout, parent, false);
+            }
+
+            TextView title = (TextView) convertView.findViewById(R.id.list_data_title);
+            TextView description = (TextView) convertView.findViewById(R.id.list_data_desc);
+
+            title.setText(places.getTitle());
+            description.setText(places.getDescription());
+
+            return convertView;
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
