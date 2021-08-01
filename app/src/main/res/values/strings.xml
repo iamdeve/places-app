@@ -3,7 +3,7 @@
     <string name="addNewPlace">Add a new Place</string>
     <string name="viewPlacesList">View Places List</string>
     <string name="deleteAllPlaces">Delete All Places</string>
-    <string name="title">Title</string>
+    <string name="name">Name</string>
     <string name="description">Description</string>
     <string name="heading">Add Place</string>
     <string name="btnAddPlace">Add place</string>
